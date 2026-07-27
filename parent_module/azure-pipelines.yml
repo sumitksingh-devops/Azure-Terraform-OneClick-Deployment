@@ -8,24 +8,32 @@ variables:
   terraformVersion: '1.13.1'
 
 steps:
+
 - checkout: self
 
-- task: TerraformInstaller@1
-  displayName: Install Terraform
-  inputs:
-    terraformVersion: $(terraformVersion)
+# Install Terraform
+- script: |
+    wget https://releases.hashicorp.com/terraform/1.13.1/terraform_1.13.1_linux_amd64.zip
+    unzip terraform_1.13.1_linux_amd64.zip
+    sudo mv terraform /usr/local/bin/
+    terraform version
+  displayName: 'Install Terraform'
 
+# Verify Version
 - script: terraform version
-  displayName: Terraform Version
+  displayName: 'Terraform Version'
 
+# Terraform Init
 - script: terraform init
   workingDirectory: parent_module
-  displayName: Terraform Init
+  displayName: 'Terraform Init'
 
+# Terraform Format Check
 - script: terraform fmt -check
   workingDirectory: parent_module
-  displayName: Terraform Format Check
+  displayName: 'Terraform Format Check'
 
+# Terraform Validate
 - script: terraform validate
   workingDirectory: parent_module
-  displayName: Terraform Validate
+  displayName: 'Terraform Validate'
