@@ -1,0 +1,13 @@
+# Terraform
+**/.terraform/
+*.tfstate
+*.tfstate.*
+
+# VS Code
+.vscode/
+
+# Reports
+checkov-report.*
+trivy-report.*
+gitleaks-report.*
+infracost-report.*

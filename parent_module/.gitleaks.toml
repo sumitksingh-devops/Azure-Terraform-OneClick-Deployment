@@ -1,0 +1,13 @@
+title = "DevOpsInsiders Gitleaks Configuration"
+
+[allowlist]
+description = "Ignore Terraform state files and cache"
+
+paths = [
+  '''\.terraform/''',
+  '''\.terraform\.lock\.hcl''',
+  '''terraform\.tfstate''',
+  '''terraform\.tfstate\.backup''',
+  '''checkov-report\.json''',
+  '''checkov-report\.txt'''
+]
