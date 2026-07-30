@@ -87,3 +87,13 @@ steps:
     trivy config .
   workingDirectory: parent_module
   displayName: 'Run Trivy'
+  - script: |
+    wget https://github.com/gitleaks/gitleaks/releases/download/v8.24.2/gitleaks_8.24.2_linux_x64.tar.gz
+    tar -xzf gitleaks_8.24.2_linux_x64.tar.gz
+    sudo mv gitleaks /usr/local/bin/
+    gitleaks version
+  displayName: 'Install Gitleaks'
+  - script: |
+    gitleaks detect --source . --verbose
+  workingDirectory: parent_module
+  displayName: 'Run Gitleaks'
