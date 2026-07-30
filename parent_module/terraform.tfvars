@@ -64,6 +64,7 @@ nics = {
     vnet_name           = "vnet-dev"
     subnet_name         = "frontend-subnet"
     public_ip_name      = "frontend-pip"
+
   }
 }
 
@@ -85,5 +86,7 @@ vms = {
     resource_group_name = "rg-dev"
     nic_name            = "frontend-nic"
     vm_size             = "Standard_D2s_v3"
+    vm_username = "azureuser"
+    vm_password = "Welcome@1234"
   }
 }
