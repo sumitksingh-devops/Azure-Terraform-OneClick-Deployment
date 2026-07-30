@@ -37,3 +37,13 @@ steps:
 - script: terraform validate
   workingDirectory: parent_module
   displayName: 'Terraform Validate'
+  - script: |
+    curl -s https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash
+    tflint --version
+  displayName: Install TFLint
+
+- script: |
+    tflint --init
+    tflint
+  workingDirectory: parent_module
+  displayName: Run TFLintgit
