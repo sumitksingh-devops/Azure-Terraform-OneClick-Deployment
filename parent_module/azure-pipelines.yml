@@ -97,3 +97,16 @@ steps:
     gitleaks detect --source . --verbose
   workingDirectory: parent_module
   displayName: 'Run Gitleaks'
+  - script: |
+    curl -fsSL https://raw.githubusercontent.com/infracost/infracost/master/scripts/install.sh | sh
+    sudo mv infracost-linux-amd64 /usr/local/bin/infracost
+    infracost --version
+  displayName: 'Install Infracost'
+  - script: |
+    infracost breakdown \
+      --path . \
+      --format table
+  workingDirectory: parent_module
+  env:
+    INFRACOST_API_KEY: $(INFRACOST_API_KEY)
+  displayName: 'Run Infracost'
