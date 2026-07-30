@@ -47,3 +47,23 @@ steps:
     tflint
   workingDirectory: parent_module
   displayName: Run TFLintgit
+  - script: |
+    python3 -m pip install --upgrade pip
+    pip3 install checkov
+    checkov --version
+  displayName: 'Install Checkov'
+
+- script: |
+    checkov -d .
+  workingDirectory: parent_module
+  displayName: 'Run Checkov'
+  - script: |
+    checkov -d . -o cli -o junitxml --output-file-path console,checkov-report.xml
+  workingDirectory: parent_module
+  displayName: 'Run Checkov'
+  - task: PublishTestResults@2
+  inputs:
+    testResultsFormat: 'JUnit'
+    testResultsFiles: '**/checkov-report.xml'
+    testRunTitle: 'Checkov Security Scan'
+  condition: always()
