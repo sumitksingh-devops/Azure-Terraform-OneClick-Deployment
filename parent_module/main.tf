@@ -84,12 +84,9 @@ module "linux_virtual_machine" {
 
   source = "../child_module/linux_virtual_machine"
 
-  vms            = var.vms
-  admin_username = data.azurerm_key_vault_secret.vm_username.value
-  admin_password = data.azurerm_key_vault_secret.vm_password.value
+  vms = var.vms
 
   depends_on = [
     module.network_interface
   ]
-
 }

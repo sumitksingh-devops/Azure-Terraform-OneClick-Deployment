@@ -80,13 +80,12 @@ associations = {
 }
 
 vms = {
-
   vm1 = {
     vm_name             = "linux-vm"
     resource_group_name = "rg-dev"
     nic_name            = "frontend-nic"
     vm_size             = "Standard_D2s_v3"
-    vm_username = "azureuser"
-    vm_password = "Welcome@1234"
+    vm_username         = "azureuser"
+    vm_password         = "Welcome@1234"
   }
 }
